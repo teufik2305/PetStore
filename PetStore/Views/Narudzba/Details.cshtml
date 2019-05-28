@@ -1,0 +1,93 @@
+﻿@model PetStore.Models.Narudzba
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Narudzba: @Html.DisplayFor(m => m.Id)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumNarudzbe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumNarudzbe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NacinPlacanja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NacinPlacanja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImeKupca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImeKupca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrojKupca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojKupca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailKupca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailKupca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdresaKupca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdresaKupca)
+        </dd>
+
+    </dl>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Naziv igračke</th>
+            <th>Količina</th>
+            <th>Cijena</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var narudzba in Model.NarudzbaDetalji)
+        {
+            <tr>
+                <td>@narudzba.Igracka.Naziv</td>
+                <td>@narudzba.Kolicina</td>
+                <td>@narudzba.Cijena KM</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    @Html.ActionLink("Nazad na narudžbe", "Index")
+</p>

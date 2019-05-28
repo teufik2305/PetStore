@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "NarudzbaUspjesna";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Uspješno ste obavili narudžbu!</h1>
+
+<p>
+    @Html.ActionLink("Vratite se nazad na pregled igračaka", "Index", "Igrackas",null,new { @class="btn btn-primary" })
+</p>
+

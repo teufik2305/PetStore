@@ -1,0 +1,37 @@
+﻿@model IEnumerable<PetStore.Models.Narudzba>
+@{
+    ViewBag.Title = "NarudzbaList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista narudžbi</h2>
+
+<table id="narudbas" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Datum Narudžbe</th>
+            <th>Broj kartice</th>
+            <th>Status</th>
+            <th>Kupac</th>
+            <th>Broj telefona</th>
+            <th>Email adresa</th>
+            <th>Adresa dostavljanja</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var narudzba in Model)
+        {
+            <tr>
+                <td>@String.Format("{0:dd/MM/yyyy}", @narudzba.DatumNarudzbe)</td>
+                <td>@narudzba.NacinPlacanja</td>
+                <td>@narudzba.Status</td>
+                <td>@narudzba.ImeKupca</td>
+                <td>@narudzba.BrojKupca</td>
+                <td>@narudzba.EmailKupca</td>
+                <td>@narudzba.AdresaKupca</td>
+                <td>@Html.ActionLink("Detalji narudžbe","Details",new { id = narudzba.Id })</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,53 @@
+﻿@model PetStore.Models.Igracka
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detaljno</h2>
+
+<div>
+    <h4>Igračka</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <img src="@Url.Content(Model.SlikaPath)" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cijena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cijena) KM
+        </dd>
+        <dd>
+            <br />
+        </dd>
+        <dd>
+            @Html.ActionLink("Dodaj u košaru", "OrderNow", "ShoppingCart", new { id = Model.Id }, new { @class = "btn btn-primary" })
+        </dd>
+
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Vrati na listu", "Index",null,new { @class = "btn btn-primary" })
+</p>

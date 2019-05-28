@@ -1,0 +1,36 @@
+﻿@using PetStore.Models;
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Fera Store", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Igračke", "Index", "Igrackas")</li>
+                <li>@Html.ActionLink("Košara", "Index", "ShoppingCart")</li>
+                @{
+                    if (User.IsInRole(RoleName.CanManageIgrackas))
+                    {
+                        <li>@Html.ActionLink("Narudžbe", "Index", "Narudzba")</li>
+                    }
+                }
+
+                <!--
+        DROPDOWNLISTA Za listanje igracaka po kategorijama
+
+        <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">Kategorije igračaka</a>
+        <div class="dropdown-content">
+        </div>
+    </li>-->
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</div>

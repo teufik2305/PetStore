@@ -1,0 +1,38 @@
+﻿@using PetStore.Models
+@model List<PetStore.Models.Igracka>
+
+@{
+    ViewBag.Title = "SortByKategorija";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SortByKategorija</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Slika</th>
+            <th>Igračka</th>
+            <th>Kategorija</th>
+            <th>Opis</th>
+            <th>Cijena</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var igracka in Model)
+        {
+            <tr>
+                <td><img src="@Url.Content(igracka.SlikaPath)" Width="80" Height="80" /></td>
+                <td>
+                    @Html.ActionLink(igracka.Naziv,"Index","Igrackas",new { kId = igracka.KategorijaId },null)
+                <hr />
+                @Html.ActionLink("Ukloni", "Delete", "Igrackas", new { id = igracka.Id }, null)
+            </td>
+            <td>@igracka.Kategorija.Naziv</td>
+            <td>@igracka.Opis</td>
+            <td>@igracka.Cijena KM</td>
+            <td>@Html.ActionLink("Dodaj u košaru", "OrderNow", "ShoppingCart", new { id = igracka.Id }, null)</td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,43 @@
+﻿@model PetStore.ViewModels.NarudzbaFormViewModel
+@{
+    ViewBag.Title = "Započni narudžbu";
+}
+
+<h2>@ViewBag.Title</h2>
+@Html.ValidationSummary()
+
+@using (Html.BeginForm("Kupi", "Narudzba", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ImeKupca)
+        @Html.TextBoxFor(m => m.ImeKupca, new { @class="form-control" })
+        @Html.ValidationMessageFor(m => m.ImeKupca)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.AdresaKupca)
+        @Html.TextBoxFor(m => m.AdresaKupca, new { @class="form-control" })
+        @Html.ValidationMessageFor(m => m.AdresaKupca)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.EmailKupca)
+        @Html.TextBoxFor(m => m.EmailKupca, new { @class="form-control" })
+        @Html.ValidationMessageFor(m => m.EmailKupca)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.BrojKupca)
+        @Html.TextBoxFor(m => m.BrojKupca, new { @class="form-control" })
+        @Html.ValidationMessageFor(m => m.BrojKupca)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NacinPlacanja)
+        @Html.TextBoxFor(m => m.NacinPlacanja, new { @class="form-control" })
+        @Html.ValidationMessageFor(m => m.NacinPlacanja)
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Naruči</button>
+}
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+}

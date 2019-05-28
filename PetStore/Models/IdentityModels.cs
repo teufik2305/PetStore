@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PetStore.ViewModels;
 
 namespace PetStore.Models
 {
@@ -20,6 +21,12 @@ namespace PetStore.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Igracka> Igrackas { get; set; }
+        public DbSet<Kategorija> Kategorijas { get; set; }
+        public DbSet<Narudzba> Narudzbas { get; set; }
+        public DbSet<NarudzbaDetalji> NarudzbaDetaljis { get; set; }
+        
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

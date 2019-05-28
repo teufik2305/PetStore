@@ -1,0 +1,45 @@
+﻿@model PetStore.ViewModels.IgrackaFormViewModel
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+@Html.ValidationSummary()
+
+@using (Html.BeginForm("Save", "Igrackas", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.File)
+        @Html.TextBoxFor(m => m.File, new { @type = "file", @name = "File" })
+        @Html.ValidationMessageFor(m => m.File)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Naziv)
+        @Html.TextBoxFor(m => m.Naziv, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Naziv)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.KategorijaId)
+        @Html.DropDownListFor(m => m.KategorijaId, new SelectList(Model.Kategorijas, "Id", "Naziv"), "Odaberi kategoriju", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.KategorijaId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Opis)
+        @Html.TextBoxFor(m => m.Opis, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cijena)
+        @Html.TextBoxFor(m => m.Cijena, new { @class = "form-control", @value="" })
+        @Html.ValidationMessageFor(m => m.Cijena)
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")    
+}

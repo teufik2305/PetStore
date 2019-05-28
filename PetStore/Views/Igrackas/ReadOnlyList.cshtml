@@ -1,0 +1,84 @@
+﻿@model IEnumerable<PetStore.Models.Igracka>
+@{
+    ViewBag.Title = "Igrackas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Igračke</h2>
+
+<table id="igrackas" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Slika</th>
+            <th>Igračka</th>
+            <th>Kategorija</th>
+            <th>Cijena</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var igracka in Model)
+        {
+        <tr>
+            <td><img src="@Url.Content(igracka.SlikaPath)" Width="100" Height="100" /></td>
+            <td>
+                @Html.ActionLink(igracka.Naziv, "Details", "Igrackas", new { id = igracka.Id }, null)
+            </td>
+            <td>@igracka.Kategorija.Naziv</td>
+            <td>@igracka.Cijena KM</td>
+            <td>@Html.ActionLink("Dodaj u košaru", "OrderNow", "ShoppingCart", new { id = igracka.Id }, new { @class = "btn btn-primary" })</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#igrackas").DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Croatian.json"
+                }
+            }
+            /* Prikupljanje igracaka iz api controllera
+            {
+            ajax: {
+                url: "/api/igrackas",
+                type:"GET",
+                dataSrc: ""
+            },
+                columns: [
+                    {
+                        data: "slikaPath",
+                        render: function (data) {
+                            return '<img src="Image/' + data + '">';
+                        }
+                    },
+                {
+                    data: "naziv",
+                    render: function (data, type, igracka) {
+                        return "<a href = '/igrackas/edit/" + igracka.id + "'>" + igracka.naziv + "</a>";
+                    }
+                },
+                {
+                    data: "kategorija.naziv"
+                },
+                {
+                    data: "opis"
+                },
+                {
+                    data: "cijena"
+                },
+                {
+                    data: "id",
+                    render: function (data) {
+                        return "<button class='btn-link js-delete' data-igracka-id=" + data + ">Delete</button>";
+
+                    }
+                }
+            ]
+        }*/);
+        });
+    </script>
+}

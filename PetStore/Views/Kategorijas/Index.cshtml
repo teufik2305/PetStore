@@ -1,0 +1,29 @@
+﻿@model IEnumerable<PetStore.Models.Kategorija>
+@{
+    ViewBag.Title = "Kategorija";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kategorije</h2>
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var kategorija in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(kategorija.Naziv, "Details", "Kategorijas", new { id = kategorija.Id }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
